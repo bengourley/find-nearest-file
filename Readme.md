@@ -1,7 +1,8 @@
 # find-nearest-file
 
-Lookup a filename starting in `process.cwd()`, then `../`, `../../`, all the way
-up to the filesystem root. Returns the found file path or `null`.
+Lookup a filename starting in `process.cwd()` or a specified root directory,
+then `../`, `../../`, all the way up to the filesystem root. Returns then
+found file path or `null`.
 
 ## Installation
 
@@ -14,6 +15,7 @@ npm install --save find-nearest-file
 ```js
 var findNearestFile = require('find-nearest-file')
 var file = findNearestFile('.localconfigrc')
+var otherfile = findNearestFile('.localconfigrc', '/start/search/from/here')
 ```
 
 ## Credits

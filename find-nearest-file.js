@@ -3,13 +3,16 @@ module.exports = find
 var fs = require('fs')
   , path = require('path')
 
-function find(filename) {
+function find(filename, root) {
+
+  root = root || process.cwd();
 
   if (!filename) throw new Error('filename is required')
 
   if (filename.indexOf('/') !== -1 || filename === '..') {
     throw new Error('filename must be just a filename and not a path')
   }
+
 
   function findFile(directory, filename) {
 
@@ -33,6 +36,6 @@ function find(filename) {
 
   }
 
-  return findFile(process.cwd(), filename)
+  return findFile(root, filename)
 
 }
