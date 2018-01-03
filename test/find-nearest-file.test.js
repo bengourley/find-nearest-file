@@ -67,4 +67,22 @@ describe('find-nearest-file', function () {
 
   })
 
+  it('should start searching at a different root directory, if provided', function () {
+
+    var find = rewire('../')
+      , filename = 'a-really-unique-filename-for-testing.test.zzz.__dsf.yup'
+      , paths = []
+
+    function mockStat(path) {
+      paths.push(path)
+      throw new Error()
+    }
+
+    find.__set__('fs', { statSync: mockStat })
+    find(filename, '/')
+    assert.equal(paths.length, 1)
+    assert.equal(paths[0], '/' + filename)
+
+  })
+
 })
